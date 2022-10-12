@@ -1,0 +1,177 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap%27');
+    body {
+    background-color:#white;
+    font-size: 10pt;
+    font-family: arial, sans-serif;
+    }
+    
+    a {
+    text-decoration: none;
+    
+    }
+    
+    a:hover {
+    text-decoration: underline;
+    }
+    
+    button {
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    }
+      
+    
+    .search {
+    text-align: center;
+    clear: both;
+    margin: 11% 0 0 0;
+    }
+    
+    .logo {
+    max-width: 21%;
+    margin: 0 auto;
+    }
+    
+    .search img {
+    margin-bottom: 3%;
+    max-width: 100%;
+    }
+    
+    .search input {
+    width: 570px;
+    border: 1px solid #D8D8D8;
+    padding: 5px;
+    font-size: 11pt;
+    }
+    
+    .search-bar {
+    border-radius:10px;
+    max-width: 80%;
+    }
+    
+    .search input:focus {
+    outline: none;
+    border: 1px solid #4285F4;
+    }
+    
+    .search button {
+    margin: 14px 7px 0 5px;
+    padding: 7px 8px;
+    border-radius: 2px;
+    border: 1px solid #D0D0D0;
+    color: #444444;
+   
+    }
+    
+    .search button:hover {
+    box-shadow: 1px 1px 1px rgba(0,0,0,.1);
+    }
+    
+    /* End of Search */
+    
+    @media screen and (max-width: 510px) {
+    .top-toolbar nav a:nth-child(2), a:nth-child(3), footer {
+    display:none;
+    }
+    
+    .logo {
+    max-width: 40%;
+    }
+    }
+
+        .typing{
+            font-size: 300%;
+            font-family:permanent marker;
+            color:black;
+            transform: translateY(10px);
+            transition: .2s all ease;
+            position: relative;
+        }
+        .typing:hover{
+            transform: translateY(0px);
+            color: black;
+        }
+        
+        .typing::after{
+            content:"";
+            position: absolute;
+            width: 1px;
+            height: 90%;
+            border-right: 2px solid white;
+            margin-right: 1px;
+            animation: blink 0.5s infinite ease;
+        }
+        
+        @keyframes blink{
+            0%{
+                opacity: 0;
+            }
+            100%{
+                opacity: 1;
+            }
+        }
+    .typing:hover{
+        transform: translateY(0px);
+        color: black;
+    }
+    
+    .typing::after{
+        content:"";
+        position: absolute;
+        width: 1px;
+        height: 90%;
+        border-right: 2px solid black;
+        margin-right: 1px;
+        animation: blink 0.5s infinite ease;
+    }
+    
+    @keyframes blink{
+        0%{
+            opacity: 0;
+        }
+        100%{
+            opacity: 1;
+        }
+    }
+    
+    
+    </style>
+    <title>Roogle Search</title>
+    <div class="search">
+    <div class="logo">
+    <h1 class="typing">Roogle</h1>
+    <script type="text/javascript">
+        const texts = ['Roogle', 'Search', 'Roogle', 'Search'];
+let count = 0;
+let index = 0;
+let currentText = '';
+let letter = '';
+let direction = true;
+
+(function type(){
+    if(count === texts.length){
+        count = 0;
+    }
+    currentText = texts[count];
+    letter = currentText.slice(0, ++index);
+    document.querySelector('.typing').textContent = letter;
+    if(letter.length === currentText.length){
+        count++;
+        index = 0;
+
+    setTimeout(type, 2000);}
+    else {
+
+            setTimeout(type, 100);
+          }
+}())
+    </script>
+    </div>
+    <form method="POST" action="search">
+            {% csrf_token %}
+    <input class="search-bar" type="text" name="search" autofocus x-webkit-speech/>
+    <div class="search-nav">
+    <a href='#'><button type="submit">Search Now</button></a>
+    </form>
+    </div>
+    </div>
